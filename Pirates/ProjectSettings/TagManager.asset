@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Water
+    uniqueID: 2728364059
+    locked: 0
+  - name: Island
+    uniqueID: 1103534815
+    locked: 0
+  - name: Enemys
+    uniqueID: 3876000989
+    locked: 0
+  - name: Player
+    uniqueID: 1860339507
+    locked: 0
