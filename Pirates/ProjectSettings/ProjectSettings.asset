@@ -656,12 +656,12 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 0
-  cloudProjectId: 
+  activeInputHandler: 2
+  cloudProjectId: c532ef47-5132-4de9-96ef-9cc76ae10f9b
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Pirates
+  organizationId: dimas01
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
