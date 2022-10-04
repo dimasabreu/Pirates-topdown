@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Island
   layers:
   - Default
   - TransparentFX
@@ -11,8 +12,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Island
+  - Player
   - 
   - 
   - 
@@ -46,6 +47,9 @@ TagManager:
     locked: 0
   - name: Island
     uniqueID: 1103534815
+    locked: 0
+  - name: Fort
+    uniqueID: 2015256861
     locked: 0
   - name: Enemys
     uniqueID: 3876000989
