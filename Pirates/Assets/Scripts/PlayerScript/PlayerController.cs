@@ -47,7 +47,15 @@ public class PlayerController : MonoBehaviour
             speed -= 2 * Time.deltaTime;
             if (speed <= 0)
             {
-                Destroy(gameObject);
+                Destroy(gameObject, 2f);
+            }
+        }
+        else if(collision.gameObject.CompareTag("Fort"))
+        {
+            speed -= speed;
+            if (speed <= 0)
+            {
+                Destroy(gameObject, 2f);
             }
         }
     }
@@ -60,7 +68,4 @@ public class PlayerController : MonoBehaviour
 
         }
     }
-    
-        
-
 }
