@@ -8,6 +8,10 @@ public class PlayerController : MonoBehaviour
     [Header("Player Cfg")]
     [SerializeField] private float speed;
     [SerializeField] private float rotationSpeed;
+    [SerializeField] private float xMin;
+    [SerializeField] private float xMax;
+    [SerializeField] private float yMin;
+    [SerializeField] private float yMax;
 
    
 
@@ -38,6 +42,11 @@ public class PlayerController : MonoBehaviour
             Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, movementDirection);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
+
+        float myX = Mathf.Clamp(transform.position.x, xMin, xMax);
+        float myY = Mathf.Clamp(transform.position.y, yMin, yMax);
+        transform.position = new Vector3(myX, myY, transform.position.z);
+
     }
 
     private void OnTriggerStay2D(Collider2D collision) 
