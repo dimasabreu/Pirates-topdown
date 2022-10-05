@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Island
   - Fort
+  - PlayerShoot
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - UI
   - Island
   - Player
-  - 
+  - Shoots
   - 
   - 
   - 
