@@ -12,12 +12,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float xMax;
     [SerializeField] private float yMin;
     [SerializeField] private float yMax;
+    [SerializeField] private Transform point;
+    private Rigidbody2D rb;
 
    
 
     void Start() 
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
     void Update()
     {
@@ -30,18 +32,20 @@ public class PlayerController : MonoBehaviour
 
     private void Moving()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-
-        Vector2 movementDirection = new Vector2(horizontalInput, verticalInput);
-        float inputMagnitude = Mathf.Clamp01(movementDirection.magnitude);
-        movementDirection.Normalize();
-        transform.Translate(movementDirection * speed * inputMagnitude * Time.deltaTime, Space.World);
-        if (movementDirection != Vector2.zero)
+        if(Input.GetKey(KeyCode.W))
         {
-            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, movementDirection);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, point.position, speed * Time.deltaTime);
         }
+        if(Input.GetKey(KeyCode.D))
+        {
+            rb.rotation -= rotationSpeed;
+        }
+        if(Input.GetKey(KeyCode.A))
+        {
+            rb.rotation += rotationSpeed;
+        }
+        
+        
 
         float myX = Mathf.Clamp(transform.position.x, xMin, xMax);
         float myY = Mathf.Clamp(transform.position.y, yMin, yMax);
