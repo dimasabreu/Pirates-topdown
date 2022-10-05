@@ -1,74 +1,70 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
 public class PlayerController : MonoBehaviour
-{
+{   
     [Header("Player Cfg")]
-    [SerializeField] private float speed;
-    [SerializeField] private float rotationSpeed;
-    [SerializeField] private float xMin;
-    [SerializeField] private float xMax;
-    [SerializeField] private float yMin;
-    [SerializeField] private float yMax;
-    [SerializeField] private Transform point;
-    private Rigidbody2D rb;
+    [SerializeField] private float maxSpeed = 5f;
+    [SerializeField] private float rotationSpeed = 180f;
 
-   
+    [Header("Screen Limit")]
+    [SerializeField] private float xMin = -35.5f;
+    [SerializeField] private float xMax = 73.5f;
+    [SerializeField] private float yMin = -33.20f;
+    [SerializeField] private float yMax = 13f;
 
-    void Start() 
+    void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+
     }
+
     void Update()
     {
-        
-    }
-    private void FixedUpdate() 
-    {
-        Moving();
+        if(maxSpeed > 0)
+        {
+            Movement();
+        }
+
+        ScreenLock();
     }
 
-    private void Moving()
+    private void Movement()
     {
-        if(Input.GetKey(KeyCode.W))
-        {
-            transform.position = Vector2.MoveTowards(transform.position, point.position, speed * Time.deltaTime);
-        }
-        if(Input.GetKey(KeyCode.D))
-        {
-            rb.rotation -= rotationSpeed;
-        }
-        if(Input.GetKey(KeyCode.A))
-        {
-            rb.rotation += rotationSpeed;
-        }
-        
-        
+        Quaternion rot = transform.rotation;
+        float z = rot.eulerAngles.z;
+        z -= Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime;
+        rot = Quaternion.Euler(0, 0, z);
+        transform.rotation = rot;
 
+        Vector3 pos = transform.position;
+        Vector3 velocity = new Vector3(0, Input.GetAxis("Vertical") * maxSpeed * Time.deltaTime, 0);
+        pos += rot * velocity;
+        transform.position = pos;
+    }
+    
+    private void ScreenLock()
+    {
         float myX = Mathf.Clamp(transform.position.x, xMin, xMax);
         float myY = Mathf.Clamp(transform.position.y, yMin, yMax);
         transform.position = new Vector3(myX, myY, transform.position.z);
-
     }
 
     private void OnTriggerStay2D(Collider2D collision) 
     {
         if(collision.gameObject.CompareTag("Island"))
         {
-            speed -= 2 * Time.deltaTime;
-            if (speed <= 0)
+            maxSpeed -= 2 * Time.deltaTime;
+            if (maxSpeed <= 0)
             {
-                Destroy(gameObject, 2f);
+                Destroy(gameObject, 1f);
             }
         }
         else if(collision.gameObject.CompareTag("Fort"))
         {
-            speed -= speed;
-            if (speed <= 0)
+            maxSpeed -= maxSpeed;
+            if (maxSpeed <= 0)
             {
-                Destroy(gameObject, 2f);
+                Destroy(gameObject, 1f);
             }
         }
     }
@@ -77,7 +73,7 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Island"))
         {
-            speed = 5;
+            maxSpeed = 5;
 
         }
     }
