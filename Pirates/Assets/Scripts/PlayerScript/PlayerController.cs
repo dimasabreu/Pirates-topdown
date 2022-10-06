@@ -4,8 +4,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {   
     [Header("Player Cfg")]
+    [SerializeField] public int health = 3;
+    [SerializeField] private int maxHealth = 3;
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float rotationSpeed = 180f;
+    private bool Alive = true;
 
     [Header("Screen Limit")]
     [SerializeField] private float xMin = -35.5f;
@@ -24,8 +27,11 @@ public class PlayerController : MonoBehaviour
         {
             Movement();
         }
-
         ScreenLock();
+        if (health < 1)
+        {
+            Die();
+        }
     }
 
     private void Movement()
@@ -49,6 +55,15 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector3(myX, myY, transform.position.z);
     }
 
+
+    private void OnTriggerEnter2D(Collider2D collider) 
+    {
+        if(collider.CompareTag("Enemy"))
+        {
+            health--;
+            collider.GetComponent<EnemyController>().Die();
+        }
+    }
     private void OnTriggerStay2D(Collider2D collision) 
     {
         if(collision.gameObject.CompareTag("Island"))
@@ -69,12 +84,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-   private void OnTriggerExit2D(Collider2D collision) 
+    private void OnTriggerExit2D(Collider2D collision) 
     {
         if(collision.gameObject.CompareTag("Island"))
         {
             maxSpeed = 5;
-
         }
     }
+
+    public void TakeDamage(int dmg)
+    {
+        health -= dmg;
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject, 1f);
+        Alive = false;
+    }
+
 }
