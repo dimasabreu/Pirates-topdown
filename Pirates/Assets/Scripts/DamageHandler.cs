@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class DamageHandler : MonoBehaviour
 {
-    
-    int health = 1;
+    [SerializeField] public int health = 1;
 
     void Update()
     {
@@ -17,6 +16,10 @@ public class DamageHandler : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider) 
     {
         if(collider.CompareTag("Player"))
+        {
+            health--;
+        }
+        if(collider.CompareTag("Enemy"))
         {
             health--;
         }
