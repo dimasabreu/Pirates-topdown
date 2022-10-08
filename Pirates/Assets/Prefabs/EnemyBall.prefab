@@ -139,7 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 1
   maxSpeed: 5
-  explosion: {fileID: 0}
+  explosion: {fileID: 8109485907273122761, guid: 85a58ae9855bada4b812b8d0165580fe, type: 3}
 --- !u!114 &1976524446365915970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,3 +152,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c08b8a6aa306c46b75bd0017bdc9b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 5
