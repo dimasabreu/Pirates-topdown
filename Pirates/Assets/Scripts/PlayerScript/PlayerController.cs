@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float rotationSpeed = 180f;
     private bool Alive = true;
     [SerializeField] private Animator anim;
+    [SerializeField] GameObject explosion;
 
     [Header("Screen Limit")]
     [SerializeField] private float xMin = -35.5f;
@@ -81,7 +82,7 @@ public class PlayerController : MonoBehaviour
             maxSpeed -= 2 * Time.deltaTime;
             if (maxSpeed <= 0)
             {
-                Destroy(gameObject, 1f);
+                Die();
             }
         }
         else if(collision.gameObject.CompareTag("Fort"))
@@ -89,7 +90,7 @@ public class PlayerController : MonoBehaviour
             maxSpeed -= maxSpeed;
             if (maxSpeed <= 0)
             {
-                Destroy(gameObject, 1f);
+                Die();
             }
         }
     }
@@ -111,6 +112,10 @@ public class PlayerController : MonoBehaviour
     {
         Destroy(gameObject, 2f);
         Alive = false;
+        if (!Alive)
+        {
+            Instantiate(explosion, transform.position, transform.rotation);
+        }
     }
 
 }
