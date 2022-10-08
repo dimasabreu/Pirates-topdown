@@ -9,8 +9,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float rotationSpeed = 180f;
     private bool Alive = true;
+
+    [Header("Player Effects")]
     [SerializeField] private Animator anim;
     [SerializeField] GameObject explosion;
+    
 
     [Header("Screen Limit")]
     [SerializeField] private float xMin = -35.5f;
