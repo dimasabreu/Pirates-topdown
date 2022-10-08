@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] public int health = 3;
     [SerializeField] float rotationSpeed = 90f;
     [SerializeField] float maxSpeed = 2f;
+    [SerializeField] GameObject explosion;
     Transform player;
     
     private bool Alive = true;
@@ -63,5 +64,37 @@ public class EnemyController : MonoBehaviour
     {
         Destroy(gameObject);
         Alive = false;
+        if (!Alive)
+        {
+            Instantiate(explosion, transform.position, transform.rotation);
+        }
+    }
+
+        private void OnTriggerStay2D(Collider2D collision) 
+    {
+        if(collision.gameObject.CompareTag("Island"))
+        {
+            maxSpeed -= 2 * Time.deltaTime;
+            if (maxSpeed <= 0)
+            {
+                Die();
+            }
+        }
+        else if(collision.gameObject.CompareTag("Fort"))
+        {
+            maxSpeed -= maxSpeed;
+            if (maxSpeed <= 0)
+            {
+                Die();
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) 
+    {
+        if(collision.gameObject.CompareTag("Island"))
+        {
+            maxSpeed = 5;
+        }
     }
 }
