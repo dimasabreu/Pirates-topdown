@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 1037
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Inspector
   m_RootView: {fileID: 9}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 76
+  controlID: 129
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 46
+  controlID: 39
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 74
+  controlID: 127
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -205,7 +205,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 75
+  controlID: 128
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -504,7 +504,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -9568
+  m_LastSelectedObjectID: 26354
 --- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -873,22 +873,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Animations/Player
+    - Assets/Scripts/EnemyScript
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Animations/Player
+  - Assets/Scripts/EnemyScript
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\dimas\Desktop\Unity games\Pirates-topdown\Pirates
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ee6a0000
-    m_LastClickedID: 27374
-    m_ExpandedIDs: 00000000266a0000286a00002a6a0000426a0000
+    m_SelectedIDs: 8e6a0000
+    m_LastClickedID: 27278
+    m_ExpandedIDs: 00000000626a0000646a0000666a0000686a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -916,7 +916,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000266a0000286a00002a6a0000
+    m_ExpandedIDs: 00000000626a0000646a0000666a0000686a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1097,21 +1097,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 10fbffffc66600000a6700003c6700004a670000
+      m_ExpandedIDs: 10fbffffc6660000f26600005a670000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: EnemyChaser (1)
-        m_OriginalName: EnemyChaser (1)
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -9568
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 4
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 13}
       m_SearchString: 
@@ -1368,9 +1368,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 38.70564, y: 4.8684626, z: 0.48975885}
+    m_Target: {x: 39.639442, y: 4.742862, z: 0.47953296}
     speed: 2
-    m_Value: {x: 38.70722, y: 4.868778, z: 0.48953384}
+    m_Value: {x: 39.639442, y: 4.742862, z: 0.47953296}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1421,9 +1421,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 0.24337794
+    m_Target: 1.2354443
     speed: 2
-    m_Value: 0.254846
+    m_Value: 1.2354443
   m_Ortho:
     m_Target: 1
     speed: 2
