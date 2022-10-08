@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float rotationSpeed = 90f;
     [SerializeField] float maxSpeed = 2f;
     [SerializeField] GameObject explosion;
+    [SerializeField] private Animator anim;
     Transform player;
     
     private bool Alive = true;
@@ -16,7 +17,16 @@ public class EnemyController : MonoBehaviour
     {
         if (health < 1)
         {
+            anim.SetTrigger("Dead");
             Die();
+        }
+        if(health == 2)
+        {
+            anim.SetTrigger("FirstDamage");
+        }
+        if(health == 1)
+        {
+            anim.SetTrigger("SecondDamage");
         }
 
         LookAtPlayer();
