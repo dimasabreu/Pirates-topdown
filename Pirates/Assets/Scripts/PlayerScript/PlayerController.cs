@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float rotationSpeed = 180f;
     private bool Alive = true;
+    [SerializeField] private Animator anim;
 
     [Header("Screen Limit")]
     [SerializeField] private float xMin = -35.5f;
@@ -30,7 +31,16 @@ public class PlayerController : MonoBehaviour
         ScreenLock();
         if (health < 1)
         {
+            anim.SetTrigger("Dead");
             Die();
+        }
+        if(health == 2)
+        {
+            anim.SetTrigger("FirstDamage");
+        }
+        if(health == 1)
+        {
+            anim.SetTrigger("SecondDamage");
         }
     }
 
@@ -99,7 +109,7 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 2f);
         Alive = false;
     }
 
