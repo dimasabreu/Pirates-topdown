@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CannonBallController : MonoBehaviour
 {
+    [Header("Cannon Cfg")]
     [SerializeField] private int dmg = 1;
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private GameObject explosion;
