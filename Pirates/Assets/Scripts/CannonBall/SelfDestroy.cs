@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class SelfDestroy : MonoBehaviour
 {
+    [Header("CannonBall Self-Destroy timer")]
     [SerializeField] public float timer = 5f;
     void Update()
     {
