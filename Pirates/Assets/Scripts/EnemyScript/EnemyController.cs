@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] public int health = 3;
+    
     private bool Alive = true;
     
     void Update()
