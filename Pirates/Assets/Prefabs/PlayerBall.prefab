@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7585583574628592678}
   - component: {fileID: 7585583574628592679}
   - component: {fileID: 7585583574628592677}
+  - component: {fileID: 8898861869450410584}
   m_Layer: 7
   m_Name: PlayerBall
   m_TagString: PlayerShoot
@@ -139,3 +140,15 @@ MonoBehaviour:
   dmg: 1
   maxSpeed: 5
   explosion: {fileID: 8109485907273122761, guid: 85a58ae9855bada4b812b8d0165580fe, type: 3}
+--- !u!114 &8898861869450410584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7585583574628592668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07c08b8a6aa306c46b75bd0017bdc9b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
