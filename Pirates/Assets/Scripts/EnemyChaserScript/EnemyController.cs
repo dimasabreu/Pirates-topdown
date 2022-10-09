@@ -1,20 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
     [Header("Enemy Cfg")]
-    [SerializeField] public int health = 3;
+    [SerializeField] public int health;
+    [SerializeField] public int maxHealth = 3;
     [SerializeField] float rotationSpeed = 90f;
     [SerializeField] float maxSpeed = 2f;
 
     [Header("Enemy Effects")]
     [SerializeField] GameObject explosion;
     [SerializeField] private Animator anim;
+    [SerializeField] private Image HealthBar;
     Transform player;
     
-    private bool Alive = true;
+    private bool Alive;
+
+    void Start() 
+    {
+        Alive = true;
+        health = maxHealth;
+    }
     
     void Update()
     {
@@ -34,6 +41,8 @@ public class EnemyController : MonoBehaviour
 
         LookAtPlayer();
         ChasePlayer();
+        HealthBar.fillAmount = ((float) health / (float) maxHealth);
+        HealthBar.color = new Color32(190, (byte) (HealthBar.fillAmount * 255), 54, 255);
     }
 
 
