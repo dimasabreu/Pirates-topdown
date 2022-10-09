@@ -6,8 +6,10 @@ public class EnemyController : MonoBehaviour
     [Header("Enemy Cfg")]
     [SerializeField] public int health;
     [SerializeField] public int maxHealth = 3;
-    [SerializeField] float rotationSpeed = 90f;
-    [SerializeField] float maxSpeed = 2f;
+    [SerializeField] public float rotationSpeed = 90f;
+    [SerializeField] public float maxSpeed = 2f;
+    [SerializeField] public int points = 10;
+    private float Speed;
 
     [Header("Enemy Effects")]
     [SerializeField] GameObject explosion;
@@ -21,6 +23,7 @@ public class EnemyController : MonoBehaviour
     {
         Alive = true;
         health = maxHealth;
+        Speed = maxSpeed;
     }
     
     void Update()
@@ -29,6 +32,11 @@ public class EnemyController : MonoBehaviour
         {
             anim.SetTrigger("Dead");
             Die();
+            var spawner = FindObjectOfType<EnemySpawner>();
+            if (spawner)
+            {
+                spawner.GetPoints(points);
+            }
         }
         if(health == 2)
         {
@@ -40,16 +48,16 @@ public class EnemyController : MonoBehaviour
         }
 
         LookAtPlayer();
-        ChasePlayer();
+        Foward();
         HealthBar.fillAmount = ((float) health / (float) maxHealth);
         HealthBar.color = new Color32(190, (byte) (HealthBar.fillAmount * 255), 54, 255);
     }
 
 
-    private void ChasePlayer()
+    private void Foward()
     {
         Vector3 pos = transform.position;
-        Vector3 velocity = new Vector3(0, maxSpeed * Time.deltaTime, 0);
+        Vector3 velocity = new Vector3(0, Speed * Time.deltaTime, 0);
         pos += transform.rotation * velocity;
         transform.position = pos;
     }
@@ -96,16 +104,16 @@ public class EnemyController : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Island"))
         {
-            maxSpeed -= 2 * Time.deltaTime;
-            if (maxSpeed <= 0)
+            Speed -= 2 * Time.deltaTime;
+            if (Speed <= 0)
             {
                 Die();
             }
         }
         else if(collision.gameObject.CompareTag("Fort"))
         {
-            maxSpeed -= maxSpeed;
-            if (maxSpeed <= 0)
+            Speed -= Speed;
+            if (Speed <= 0)
             {
                 Die();
             }
@@ -116,7 +124,7 @@ public class EnemyController : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Island"))
         {
-            maxSpeed = 5;
+           Speed = maxSpeed;
         }
     }
 }
