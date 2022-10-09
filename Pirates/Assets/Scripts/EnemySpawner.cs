@@ -1,34 +1,67 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] public GameObject[] enemyPrefab;
     [SerializeField] public float enemyRate = 5;
-    [SerializeField] private int points = 0;
+    [SerializeField] private int points;
+    [SerializeField] private Text pointsText;
     float nextEnemy = 1;
-    float spawnDistance = 20f;
+    float spawnDistance = 15f;
+    Transform player;
     
+    void Start()
+    {
+        pointsText.text = points.ToString();
+    }
+
     void Update()
     {
-        nextEnemy -= Time.deltaTime;
-        if(nextEnemy <= 0)
+        pointsText.text = points.ToString();
+        SpawnEnemy();
+    }
+
+    public void GetPoints(int points)
+    {
+        this.points += points;
+    }
+
+    private void SpawnEnemy()
+    {
+        if (player == null)
         {
-            Vector3 offset = Random.onUnitSphere;
-            offset.z = 0;
-            offset = offset.normalized * spawnDistance;
-            GameObject enemyCreated;
-            float chance = Random.Range(1f, 4f);
-            if (chance < 2f)
+            GameObject go = GameObject.Find("PlayerObject");
+            if (go != null)
             {
-                enemyCreated = enemyPrefab[0];
+                player = go.transform;
             }
-            else
-            {
-                enemyCreated = enemyPrefab[1];
-            }
-            Instantiate(enemyCreated, transform.position + offset, Quaternion.identity);
-            nextEnemy = enemyRate;
         }
-    
+        if (player == null)
+        {
+            return;
+        }
+        if (player != null)
+        {
+            nextEnemy -= Time.deltaTime;
+            if (nextEnemy <= 0)
+            {
+                Vector3 offset = Random.onUnitSphere;
+                offset.z = 0;
+                offset = offset.normalized * spawnDistance;
+                GameObject enemyCreated;
+                float chance = Random.Range(1f, 4f);
+                if (chance < 2f)
+                {
+                    enemyCreated = enemyPrefab[0];
+                }
+                else
+                {
+                    enemyCreated = enemyPrefab[1];
+                }
+                Instantiate(enemyCreated, transform.position + offset, Quaternion.identity);
+                nextEnemy = enemyRate;
+            }
+        }
     }
 }
