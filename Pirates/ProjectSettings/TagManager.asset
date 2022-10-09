@@ -8,6 +8,7 @@ TagManager:
   - Fort
   - PlayerShoot
   - Enemy
+  - EnemyShoot
   layers:
   - Default
   - TransparentFX
