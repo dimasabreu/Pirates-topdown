@@ -1,18 +1,19 @@
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {   
     [Header("Player Cfg")]
-    [SerializeField] public int health = 3;
+    private int health;
     [SerializeField] private int maxHealth = 3;
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float rotationSpeed = 180f;
-    private bool Alive = true;
+    private bool Alive;
 
     [Header("Player Effects")]
     [SerializeField] private Animator anim;
-    [SerializeField] GameObject explosion;
+    [SerializeField] private GameObject explosion;
+    [SerializeField] private Image HealthBar;
     
 
     [Header("Screen Limit")]
@@ -23,7 +24,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-
+        Alive = true;
+        health = maxHealth;
     }
 
     void Update()
@@ -40,14 +42,18 @@ public class PlayerController : MonoBehaviour
             maxSpeed = 0;
             rotationSpeed = 0;
         }
-        if(health == 2)
+        var healthTrigger1 = ((float) maxHealth / 1.5f);
+        if(health <= healthTrigger1)
         {
             anim.SetTrigger("FirstDamage");
         }
-        if(health == 1)
+        var healthTrigger2 = ((float) maxHealth / 3f);
+        if(health <= healthTrigger2)
         {
             anim.SetTrigger("SecondDamage");
         }
+        HealthBar.fillAmount = ((float) health / (float) maxHealth);
+        HealthBar.color = new Color32(190, (byte) (HealthBar.fillAmount * 255), 54, 255);
     }
 
     private void Movement()
