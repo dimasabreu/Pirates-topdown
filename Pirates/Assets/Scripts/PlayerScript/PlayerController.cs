@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float rotationSpeed = 180f;
     private bool Alive;
+    private float speed;
 
     [Header("Player Effects")]
     [SerializeField] private Animator anim;
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         Alive = true;
         health = maxHealth;
+        speed = maxSpeed;
     }
 
     void Update()
@@ -37,10 +39,10 @@ public class PlayerController : MonoBehaviour
         ScreenLock();
         if (health < 1)
         {
-            anim.SetTrigger("Dead");
             Die();
             maxSpeed = 0;
             rotationSpeed = 0;
+            Expolosion();
         }
         var healthTrigger1 = ((float) maxHealth / 1.5f);
         if(health <= healthTrigger1)
@@ -65,7 +67,7 @@ public class PlayerController : MonoBehaviour
         transform.rotation = rot;
 
         Vector3 pos = transform.position;
-        Vector3 velocity = new Vector3(0, Input.GetAxis("Vertical") * maxSpeed * Time.deltaTime, 0);
+        Vector3 velocity = new Vector3(0, Input.GetAxis("Vertical") * speed * Time.deltaTime, 0);
         pos += rot * velocity;
         transform.position = pos;
     }
@@ -77,6 +79,25 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector3(myX, myY, transform.position.z);
     }
 
+    public void TakeDamage(int dmg)
+    {
+        health -= dmg;
+    }
+
+    private void Die()
+    {
+        anim.SetTrigger("Dead");
+        Destroy(gameObject, 2f);
+        Alive = false;
+    }
+
+    private void Expolosion()
+    {
+        if (!Alive)
+        {
+            Instantiate(explosion, transform.position, transform.rotation);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collider) 
     {
@@ -91,18 +112,20 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Island"))
         {
-            maxSpeed -= 2 * Time.deltaTime;
-            if (maxSpeed <= 0)
+            speed -= 2 * Time.deltaTime;
+            if (speed <= 0)
             {
                 Die();
+                Expolosion();
             }
         }
         else if(collision.gameObject.CompareTag("Fort"))
         {
-            maxSpeed -= maxSpeed;
-            if (maxSpeed <= 0)
+            speed -= speed;
+            if (speed <= 0)
             {
                 Die();
+                Expolosion();
             }
         }
     }
@@ -111,22 +134,7 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Island"))
         {
-            maxSpeed = 5;
-        }
-    }
-
-    public void TakeDamage(int dmg)
-    {
-        health -= dmg;
-    }
-
-    private void Die()
-    {
-        Destroy(gameObject, 2f);
-        Alive = false;
-        if (!Alive)
-        {
-            Instantiate(explosion, transform.position, transform.rotation);
+            speed = maxSpeed;
         }
     }
 
