@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetTrigger("Dead");
             Die();
+            maxSpeed = 0;
+            rotationSpeed = 0;
         }
         if(health == 2)
         {
@@ -77,6 +79,7 @@ public class PlayerController : MonoBehaviour
             health--;
             collider.GetComponent<EnemyController>().Die();
         }
+        
     }
     private void OnTriggerStay2D(Collider2D collision) 
     {
