@@ -17,12 +17,6 @@ public class CannonBallControllerRight : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider) 
     {
-        if(collider.CompareTag("Player"))
-        {
-            collider.GetComponent<PlayerController>().TakeDamage(dmg);
-            Destroy(gameObject);
-            Instantiate(explosion, transform.position, transform.rotation);
-        }
         if(collider.CompareTag("Enemy"))
         {
             collider.GetComponent<EnemyController>().TakeDamage(dmg);
