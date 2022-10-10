@@ -58,4 +58,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputFieldSR: {fileID: 0}
-  inputFieldTC: {fileID: 0}
+  inputFieldTC: {fileID: 7371207548187130913, guid: 04637cdfe643f4b4daf5aee4372f89ca, type: 3}
