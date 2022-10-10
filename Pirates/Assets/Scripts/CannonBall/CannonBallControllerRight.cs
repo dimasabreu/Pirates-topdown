@@ -8,11 +8,15 @@ public class CannonBallControllerRight : MonoBehaviour
     [SerializeField] private GameObject explosion;
     void Update()
     {
+        Move();
+    }
+
+    private void Move()
+    {
         Vector3 pos = transform.position;
         Vector3 velocity = new Vector3(0, -maxSpeed * Time.deltaTime, 0);
         pos += transform.rotation * velocity;
         transform.position = pos;
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collider) 
