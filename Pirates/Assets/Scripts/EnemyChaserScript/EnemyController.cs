@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] public int maxHealth = 3;
     [SerializeField] public float rotationSpeed = 90f;
     [SerializeField] public float maxSpeed = 2f;
-    [SerializeField] public int points = 10;
+    [SerializeField] public int points = 1;
     private float Speed;
 
     [Header("Enemy Effects")]
