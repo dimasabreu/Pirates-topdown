@@ -16,7 +16,7 @@ public class TimerCountDown : MonoBehaviour
     {
         TimeFromOptions = StoreOptions.TimerCountDown;
         TimeCheck = int.TryParse(TimeFromOptions, out TimeFromOptionsINT);
-        if (TimeCheck)
+        if (TimeCheck && TimeFromOptionsINT >= 60 && TimeFromOptionsINT <= 180)
         {
             Being(TimeFromOptionsINT);
         }
@@ -46,6 +46,10 @@ public class TimerCountDown : MonoBehaviour
 
     private void OnEnd()
     {
-        
+        var gameManager = FindObjectOfType<GameManager>();
+            if (gameManager)
+            {
+                gameManager.DeathScene();            
+            }
     }
 }
