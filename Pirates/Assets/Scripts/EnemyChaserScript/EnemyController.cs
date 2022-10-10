@@ -16,7 +16,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private Image HealthBar;
     Transform player;
-    
     private bool Alive;
 
     void Start() 
@@ -28,6 +27,13 @@ public class EnemyController : MonoBehaviour
     
     void Update()
     {
+        HealthTracker();
+        LookAtPlayer();
+        Foward();
+    }
+
+    private void HealthTracker()
+    {
         if (health < 1)
         {
             anim.SetTrigger("Dead");
@@ -38,21 +44,20 @@ public class EnemyController : MonoBehaviour
                 spawner.GetPoints(points);
             }
         }
-        if(health == 2)
+        if (health == 2)
         {
             anim.SetTrigger("FirstDamage");
         }
-        if(health == 1)
+        if (health == 1)
         {
             anim.SetTrigger("SecondDamage");
         }
-
-        LookAtPlayer();
-        Foward();
-        HealthBar.fillAmount = ((float) health / (float) maxHealth);
-        HealthBar.color = new Color32(190, (byte) (HealthBar.fillAmount * 255), 54, 255);
+        if(Alive)
+        {
+            HealthBar.fillAmount = ((float)health / (float)maxHealth);
+            HealthBar.color = new Color32(190, (byte)(HealthBar.fillAmount * 255), 54, 255);
+        }
     }
-
 
     private void Foward()
     {
@@ -107,6 +112,8 @@ public class EnemyController : MonoBehaviour
             Speed -= 2 * Time.deltaTime;
             if (Speed <= 0)
             {
+                anim.SetTrigger("FirstDamage");
+                anim.SetTrigger("SecondDamage");
                 Die();
             }
         }
@@ -115,6 +122,8 @@ public class EnemyController : MonoBehaviour
             Speed -= Speed;
             if (Speed <= 0)
             {
+                anim.SetTrigger("FirstDamage");
+                anim.SetTrigger("SecondDamage");
                 Die();
             }
         }
