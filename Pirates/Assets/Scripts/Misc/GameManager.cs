@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 
 public class GameManager : MonoBehaviour
@@ -23,9 +24,15 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    IEnumerator DeathSceneDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(2);
+    }
     public void DeathScene()
     {
-        SceneManager.LoadScene(2);
+        StartCoroutine(DeathSceneDelay());
     }
     public void Exit()
     {
