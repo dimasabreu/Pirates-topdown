@@ -34,8 +34,5 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(DeathSceneDelay());
     }
-    public void Exit()
-    {
-        Application.Quit();
-    }
+    
 }
