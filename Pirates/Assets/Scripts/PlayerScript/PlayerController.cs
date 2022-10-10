@@ -32,30 +32,32 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(maxSpeed > 0)
+        if (maxSpeed > 0)
         {
             Movement();
         }
         ScreenLock();
+        HealthTracker();
+        HealthBar.fillAmount = ((float)health / (float)maxHealth);
+        HealthBar.color = new Color32(190, (byte)(HealthBar.fillAmount * 255), 54, 255);
+    }
+
+    private void HealthTracker()
+    {
         if (health < 1)
         {
             Die();
-            maxSpeed = 0;
-            rotationSpeed = 0;
-            Expolosion();
         }
-        var healthTrigger1 = ((float) maxHealth / 1.5f);
-        if(health <= healthTrigger1)
+        var healthTrigger1 = ((float)maxHealth / 1.5f);
+        if (health <= healthTrigger1)
         {
             anim.SetTrigger("FirstDamage");
         }
-        var healthTrigger2 = ((float) maxHealth / 3f);
-        if(health <= healthTrigger2)
+        var healthTrigger2 = ((float)maxHealth / 3f);
+        if (health <= healthTrigger2)
         {
             anim.SetTrigger("SecondDamage");
         }
-        HealthBar.fillAmount = ((float) health / (float) maxHealth);
-        HealthBar.color = new Color32(190, (byte) (HealthBar.fillAmount * 255), 54, 255);
     }
 
     private void Movement()
@@ -87,17 +89,30 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         anim.SetTrigger("Dead");
-        Destroy(gameObject, 2f);
         Alive = false;
+        maxSpeed = 0;
+        rotationSpeed = 0;
+        Explosion();
+        Destroy(gameObject, 1f);
+        DeathScene();
     }
 
-    private void Expolosion()
+    private void DeathScene()
     {
-        if (!Alive)
+        if(!Alive)
         {
-            Instantiate(explosion, transform.position, transform.rotation);
+            var gameManager = FindObjectOfType<GameManager>();
+            if (gameManager)
+            {
+                gameManager.DeathScene();            
+            }
         }
     }
+    private void Explosion()
+    {
+        Instantiate(explosion, transform.position, transform.rotation);
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collider) 
     {
@@ -115,8 +130,9 @@ public class PlayerController : MonoBehaviour
             speed -= 2 * Time.deltaTime;
             if (speed <= 0)
             {
+                anim.SetTrigger("FirstDamage");
+                anim.SetTrigger("SecondDamage");
                 Die();
-                Expolosion();
             }
         }
         else if(collision.gameObject.CompareTag("Fort"))
@@ -124,8 +140,9 @@ public class PlayerController : MonoBehaviour
             speed -= speed;
             if (speed <= 0)
             {
+                anim.SetTrigger("FirstDamage");
+                anim.SetTrigger("SecondDamage");
                 Die();
-                Expolosion();
             }
         }
     }
