@@ -5,7 +5,7 @@ public class ExplosionController : MonoBehaviour
     void Awake()
     {
         int qnt = FindObjectsOfType<ExplosionController>().Length;
-        if (qnt > 1)
+        if (qnt > 5)
         {
             Destroy(gameObject);
         }
