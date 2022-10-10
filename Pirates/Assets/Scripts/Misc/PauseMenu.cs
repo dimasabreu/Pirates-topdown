@@ -40,7 +40,8 @@ public class PauseMenu : MonoBehaviour
         var gameManager = FindObjectOfType<GameManager>();
             if (gameManager)
             {
-                gameManager.Menu();            
+                gameManager.Menu();
+                Resume();    
             }
     }
 
