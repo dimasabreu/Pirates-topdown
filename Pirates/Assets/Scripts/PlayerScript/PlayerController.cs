@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     private int health;
     [SerializeField] private int maxHealth = 3;
     [SerializeField] private float maxSpeed = 5f;
-    [SerializeField] private float rotationSpeed = 180f;
+    [SerializeField] private float rotationSpeed = 90f;
     private bool Alive;
     private float speed;
 
@@ -32,14 +32,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (maxSpeed > 0)
-        {
-            Movement();
-        }
         ScreenLock();
         HealthTracker();
-        HealthBar.fillAmount = ((float)health / (float)maxHealth);
-        HealthBar.color = new Color32(190, (byte)(HealthBar.fillAmount * 255), 54, 255);
+        Movement();
     }
 
     private void HealthTracker()
@@ -58,20 +53,28 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetTrigger("SecondDamage");
         }
+        if(Alive)
+        {
+            HealthBar.fillAmount = ((float)health / (float)maxHealth);
+            HealthBar.color = new Color32(190, (byte)(HealthBar.fillAmount * 255), 54, 255);
+        }
     }
 
     private void Movement()
     {
-        Quaternion rot = transform.rotation;
-        float z = rot.eulerAngles.z;
-        z -= Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime;
-        rot = Quaternion.Euler(0, 0, z);
-        transform.rotation = rot;
+        if(Alive)
+        {
+            Quaternion rot = transform.rotation;
+            float z = rot.eulerAngles.z;
+            z -= Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime;
+            rot = Quaternion.Euler(0, 0, z);
+            transform.rotation = rot;
 
-        Vector3 pos = transform.position;
-        Vector3 velocity = new Vector3(0, Input.GetAxis("Vertical") * speed * Time.deltaTime, 0);
-        pos += rot * velocity;
-        transform.position = pos;
+            Vector3 pos = transform.position;
+            Vector3 velocity = new Vector3(0, Input.GetAxis("Vertical") * speed * Time.deltaTime, 0);
+            pos += rot * velocity;
+            transform.position = pos;
+        }
     }
     
     private void ScreenLock()
