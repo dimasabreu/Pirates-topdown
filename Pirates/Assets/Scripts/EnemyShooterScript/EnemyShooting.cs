@@ -11,6 +11,11 @@ public class EnemyShooting : MonoBehaviour
 
     void Update()
     {
+        Shooting();
+    }
+
+    private void Shooting()
+    {
         if (player == null)
         {
             GameObject go = GameObject.Find("PlayerObject");
@@ -20,12 +25,11 @@ public class EnemyShooting : MonoBehaviour
             }
         }
         cooldownTimer -= Time.deltaTime;
-        if(cooldownTimer <= 0 && player != null && Vector3.Distance(transform.position, player.position) < 7)
+        if (cooldownTimer <= 0 && player != null && Vector3.Distance(transform.position, player.position) < 7)
         {
             cooldownTimer = fireDelay;
             Vector3 offset = transform.rotation * bulletOffset;
             Instantiate(bulletPrefab, transform.position + offset, transform.rotation);
         }
     }
-    
 }
