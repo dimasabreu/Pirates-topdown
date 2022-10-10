@@ -646,7 +646,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   maxSpeed: 5
-  rotationSpeed: 180
+  rotationSpeed: 90
   anim: {fileID: 8529384218484568862}
   explosion: {fileID: 8699237145598458468, guid: 153b8297a49c19849b6fe3cbedc7e868, type: 3}
   HealthBar: {fileID: 8529384219833966394}
