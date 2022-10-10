@@ -5,6 +5,7 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject MainMenu;
     private void Awake() 
     {
         // garantindo q só tem 1
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     public void Menu()
     {
         SceneManager.LoadScene(0);
+        MainMenu.SetActive(true);
     }
     public void StartGame()
     {
@@ -34,5 +36,4 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(DeathSceneDelay());
     }
-    
 }
