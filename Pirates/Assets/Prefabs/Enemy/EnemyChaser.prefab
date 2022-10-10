@@ -88,7 +88,8 @@ MonoBehaviour:
   health: 3
   maxHealth: 3
   rotationSpeed: 90
-  maxSpeed: 2
+  maxSpeed: 3
+  points: 1
   explosion: {fileID: 8699237145598458468, guid: 153b8297a49c19849b6fe3cbedc7e868, type: 3}
   anim: {fileID: 3446334805230127902}
   HealthBar: {fileID: 1937181354213730038}
