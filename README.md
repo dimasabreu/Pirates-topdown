@@ -1,6 +1,6 @@
 # Pirate game! sail the ship along the grand line
 
-How to play: <a href="https://dimasabreu.itch.io/piratestopdown"> Download </a> <br>
+How to play: <a href="https://dimasabreu.itch.io/piratestopdown"> Play </a> <br>
 
 Want to see more?<br>
 <a href="https://youtu.be/nxYqZeDYsqI"> GamePlay </a>
